@@ -481,6 +481,30 @@ public class ObsTest {
         assertEquals(datetimeFormat.parse(dateTimeString), obs.getValueDatetime());
     }
 
+	@Test
+    public void setValueAsString_shouldSetTextValue() throws Exception {
+        Obs obs = new Obs();
+        ConceptDatatype cdt = new ConceptDatatype();
+        cdt.setHl7Abbreviation("ST");
+        Concept cn = new Concept();
+        cn.setDatatype(cdt);
+        obs.setConcept(cn);
+        String textValue = "Sample Text";
+        obs.setValueAsString(textValue);
+        assertEquals(textValue, obs.getValueText());
+    }
+
+    @Test
+    public void setValueAsString_shouldThrowExceptionForUnsupportedDatatype() {
+        Obs obs = new Obs();
+        ConceptDatatype cdt = new ConceptDatatype();
+        cdt.setHl7Abbreviation("CWE");
+        Concept cn = new Concept();
+        cn.setDatatype(cdt);
+        obs.setConcept(cn);
+        assertThrows(RuntimeException.class, () -> obs.setValueAsString("unsupported"));
+    }
+
 	
 	/**
 	 * @see Obs#getValueAsString(Locale)
