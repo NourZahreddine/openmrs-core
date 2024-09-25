@@ -438,6 +438,34 @@ public class ObsTest {
 		parent.addGroupMember(child);
 		assertTrue(parent.isObsGrouping(), "When checking for Obs grouping, should include voided Obs");
 	}
+
+	@Test
+    public void setValueAsString_shouldSetDateValue() throws Exception {
+        Obs obs = new Obs();
+        ConceptDatatype cdt = new ConceptDatatype();
+        cdt.setHl7Abbreviation("DT");
+        Concept cn = new Concept();
+        cn.setDatatype(cdt);
+        obs.setConcept(cn);
+        String dateString = "2023-09-18";
+        obs.setValueAsString(dateString);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        assertEquals(dateFormat.parse(dateString), obs.getValueDatetime());
+    }
+
+    @Test
+    public void setValueAsString_shouldSetTimeValue() throws Exception {
+        Obs obs = new Obs();
+        ConceptDatatype cdt = new ConceptDatatype();
+        cdt.setHl7Abbreviation("TM");
+        Concept cn = new Concept();
+        cn.setDatatype(cdt);
+        obs.setConcept(cn);
+        String timeString = "12:30:00";
+        obs.setValueAsString(timeString);
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        assertEquals(timeFormat.parse(timeString), obs.getValueDatetime());
+    }
 	
 	/**
 	 * @see Obs#getValueAsString(Locale)
