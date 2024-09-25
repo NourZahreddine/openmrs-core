@@ -511,6 +511,16 @@ public class ObsTest {
         assertThrows(RuntimeException.class, () -> obs.setValueAsString("value"));
     }
 
+	@Test
+    public void getValueAsString_shouldReturnFormatDateValueWithDefaultLocal() {
+        Obs obs = new Obs();
+        Date date = new Date(); 
+        obs.setValueDatetime(date);
+        SimpleDateFormat defaultDateFormat = new SimpleDateFormat("M/d/yy", Locale.ENGLISH);
+        String expectedValue = defaultDateFormat.format(date);
+        assertEquals(expectedValue, obs.getValueAsString(Locale.ENGLISH));
+    }
+
 	
 	/**
 	 * @see Obs#getValueAsString(Locale)
