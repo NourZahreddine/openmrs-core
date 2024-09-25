@@ -505,6 +505,12 @@ public class ObsTest {
         assertThrows(RuntimeException.class, () -> obs.setValueAsString("unsupported"));
     }
 
+	@Test
+    public void setValueAsString_shouldThrowExceptionForNullConcept() {
+        Obs obs = new Obs();
+        assertThrows(RuntimeException.class, () -> obs.setValueAsString("value"));
+    }
+
 	
 	/**
 	 * @see Obs#getValueAsString(Locale)
