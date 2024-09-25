@@ -466,6 +466,21 @@ public class ObsTest {
         DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         assertEquals(timeFormat.parse(timeString), obs.getValueDatetime());
     }
+
+	@Test
+    public void setValueAsString_shouldSetDateTimeValue() throws Exception {
+        Obs obs = new Obs();
+        ConceptDatatype cdt = new ConceptDatatype();
+        cdt.setHl7Abbreviation("TS");
+        Concept cn = new Concept();
+        cn.setDatatype(cdt);
+        obs.setConcept(cn);
+        String dateTimeString = "2023-09-18 12:00:00";
+        obs.setValueAsString(dateTimeString);
+        DateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        assertEquals(datetimeFormat.parse(dateTimeString), obs.getValueDatetime());
+    }
+
 	
 	/**
 	 * @see Obs#getValueAsString(Locale)
