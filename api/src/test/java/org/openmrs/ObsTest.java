@@ -489,7 +489,7 @@ public class ObsTest {
         Concept cn = new Concept();
         cn.setDatatype(cdt);
         obs.setConcept(cn);
-        String textValue = "Sample Text";
+        String textValue = "text";
         obs.setValueAsString(textValue);
         assertEquals(textValue, obs.getValueText());
     }

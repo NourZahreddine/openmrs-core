@@ -1245,3 +1245,5 @@ public class Obs extends BaseFormRecordableOpenmrsData {
 		this.status = status;
 	}
 }
+
+
